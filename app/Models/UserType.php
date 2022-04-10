@@ -20,4 +20,8 @@ use Illuminate\Database\Eloquent\Model;
 class UserType extends Model
 {
     use HasFactory;
+
+    public const ADMIN = 1;
+    public const SCHOOL_ADMIN = 2;
+    public const TEACHER = 3;
 }
