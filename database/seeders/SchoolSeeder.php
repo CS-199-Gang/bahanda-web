@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\School;
+use Exception;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
 class SchoolSeeder extends Seeder
 {
@@ -14,6 +17,15 @@ class SchoolSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $counter = 0;
+        while ($counter < 10) {
+            try {
+                School::factory()->create();
+                $counter++;
+            } catch (Exception $e) {
+                // Most likely encountered a conflict
+                Log::error($e->getMessage());
+            }
+        }
     }
 }

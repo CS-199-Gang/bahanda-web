@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Bezhanov\Faker\Provider\Educator;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,9 @@ class SchoolFactory extends Factory
      */
     public function definition()
     {
+        $this->faker->addProvider(new Educator($this->faker));
         return [
-            //
+            'name' => $this->faker->university
         ];
     }
 }
