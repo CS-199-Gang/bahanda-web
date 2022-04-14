@@ -37,8 +37,8 @@
                             Dashboard
                         </jet-nav-link>
                         <jet-nav-link
-                            :href="route('schools')"
-                            :active="route().current('schools')"
+                            :href="route('schools.index')"
+                            :active="route().current('schools.index')"
                         >
                             Schools
                         </jet-nav-link>

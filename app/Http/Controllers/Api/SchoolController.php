@@ -40,7 +40,9 @@ class SchoolController extends Controller
      */
     public function show(School $school)
     {
-        //
+        return [
+            'data' => $school
+        ];
     }
 
     /**

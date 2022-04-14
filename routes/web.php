@@ -35,4 +35,4 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/schools', SchoolController::class)->name('schools');
+Route::resource('/schools', SchoolController::class);

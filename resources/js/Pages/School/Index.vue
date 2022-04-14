@@ -4,7 +4,15 @@
             <h2 class="h4 font-weight-bold">Schools</h2>
         </template>
         <DataTable :value="schools" paginator :rows="10">
-            <Column field="name" header="Name"></Column>
+            <Column field="name" header="Name">
+                <template #body="slotProps">
+                    <Link
+                        :href="route('schools.show', slotProps.data.id)"
+                        :active="route().current('schools.show')"
+                        >{{ slotProps.data.name }}</Link
+                    >
+                </template>
+            </Column>
         </DataTable>
     </app-layout>
 </template>
@@ -16,6 +24,7 @@ import Welcome from "@/Jetstream/Welcome.vue";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import axios from "axios";
+import { Link } from "@inertiajs/inertia-vue3";
 
 export default defineComponent({
     setup() {
@@ -41,6 +50,7 @@ export default defineComponent({
         Welcome,
         DataTable,
         Column,
+        Link,
     },
 });
 </script>
