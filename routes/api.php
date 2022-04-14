@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('school', SchoolController::class, ['as' => 'api']);
 Route::get('school/{school}/users', [SchoolController::class, 'users'])->name('school.users');
+Route::post('school/{school}/add-user', [SchoolController::class, 'add_user'])->name('school.users');

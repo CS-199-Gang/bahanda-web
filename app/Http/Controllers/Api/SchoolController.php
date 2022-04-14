@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SchoolAddUserRequest;
 use App\Http\Requests\StoreSchoolRequest;
 use App\Http\Requests\UpdateSchoolRequest;
 use App\Models\School;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str;
 
 class SchoolController extends Controller
 {
@@ -78,5 +83,17 @@ class SchoolController extends Controller
         return [
             'data' => User::whereSchoolId($school->id)->get()
         ];
+    }
+
+    public function add_user(SchoolAddUserRequest $request, School $school)
+    {
+        $validated = $request->validated();
+        $password = Str::random(8);
+        $validated['password'] = Hash::make($password);
+        $validated['school_id'] = $school->id;
+        Log::debug($validated);
+        $user = new User($validated);
+        $user->save();
+        return response()->json(['data' => ['password' => $password]], 201);
     }
 }
