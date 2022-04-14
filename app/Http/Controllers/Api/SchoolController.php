@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSchoolRequest;
 use App\Http\Requests\UpdateSchoolRequest;
 use App\Models\School;
+use App\Models\User;
 
 class SchoolController extends Controller
 {
@@ -70,5 +71,12 @@ class SchoolController extends Controller
     public function destroy(School $school)
     {
         //
+    }
+
+    public function users(School $school)
+    {
+        return [
+            'data' => User::whereSchoolId($school->id)->get()
+        ];
     }
 }
