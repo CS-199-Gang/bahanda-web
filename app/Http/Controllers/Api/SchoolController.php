@@ -29,7 +29,11 @@ class SchoolController extends Controller
      */
     public function store(StoreSchoolRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $school = new School($validated);
+        $school->save();
+        return response()->json([], 201);
     }
 
     /**
