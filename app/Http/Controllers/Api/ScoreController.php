@@ -17,7 +17,7 @@ class ScoreController extends Controller
     public function index()
     {
         $school = Auth::user()->school_id;
-        $scores = Score::query()->where('school', '=', $school->id);
+        $scores = Score::query()->where('school', '=', $school)->get();
         return [
             'data' => $scores
         ];
