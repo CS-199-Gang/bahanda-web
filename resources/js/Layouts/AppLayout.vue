@@ -62,6 +62,12 @@
                         >
                             Users
                         </jet-nav-link>
+                        <jet-nav-link
+                            :href="route('scores.index')"
+                            :active="route().current('scores.index')"
+                        >
+                            Scores
+                        </jet-nav-link>
                     </ul>
                     <ul
                         v-else-if="$page.props.user.user_type === 3"
@@ -72,6 +78,12 @@
                             :active="route().current('dashboard')"
                         >
                             {{ $page.props.user.school.name }}
+                        </jet-nav-link>
+                        <jet-nav-link
+                            :href="route('scores.index')"
+                            :active="route().current('scores.index')"
+                        >
+                            Scores
                         </jet-nav-link>
                     </ul>
 

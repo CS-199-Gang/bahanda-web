@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\ScoreController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -38,3 +39,4 @@ Route::middleware([
 Route::resource('/schools', SchoolController::class);
 // School Admin view for users
 Route::get('/users', [SchoolController::class, 'show'])->name('schools.users');
+Route::resource('/scores', ScoreController::class);
