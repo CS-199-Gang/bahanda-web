@@ -107,4 +107,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public $with = ['school'];
+
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
 }

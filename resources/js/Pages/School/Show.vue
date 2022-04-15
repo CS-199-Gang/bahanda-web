@@ -1,5 +1,5 @@
 <template>
-    <app-layout title="Schools">
+    <app-layout title="Users">
         <template #header>
             <h2 class="h4 font-weight-bold">Schools</h2>
         </template>

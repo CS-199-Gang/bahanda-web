@@ -29,7 +29,10 @@
                     id="navbarSupportedContent"
                 >
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    <ul
+                        v-if="$page.props.user.user_type === 1"
+                        class="navbar-nav me-auto"
+                    >
                         <jet-nav-link
                             :href="route('dashboard')"
                             :active="route().current('dashboard')"
@@ -41,6 +44,23 @@
                             :active="route().current('schools.index')"
                         >
                             Schools
+                        </jet-nav-link>
+                    </ul>
+                    <ul
+                        v-else-if="$page.props.user.user_type === 2"
+                        class="navbar-nav me-auto"
+                    >
+                        <jet-nav-link
+                            :href="route('dashboard')"
+                            :active="route().current('dashboard')"
+                        >
+                            {{ $page.props.user.school.name }}
+                        </jet-nav-link>
+                        <jet-nav-link
+                            :href="route('schools.users')"
+                            :active="route().current('schools.users')"
+                        >
+                            Users
                         </jet-nav-link>
                     </ul>
 

@@ -36,3 +36,5 @@ Route::middleware([
 });
 
 Route::resource('/schools', SchoolController::class);
+// School Admin view for users
+Route::get('/users', [SchoolController::class, 'show'])->name('schools.users');
