@@ -36,7 +36,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::resource('/schools', SchoolController::class);
+Route::middleware('auth')->resource('/schools', SchoolController::class);
 // School Admin view for users
-Route::get('/users', [SchoolController::class, 'show'])->name('schools.users');
-Route::resource('/scores', ScoreController::class);
+Route::middleware('auth')->get('/users', [SchoolController::class, 'show'])->name('schools.users');
+Route::middleware('auth')->resource('/scores', ScoreController::class);
