@@ -25,4 +25,8 @@ use Illuminate\Database\Eloquent\Model;
 class Device extends Model
 {
     use HasFactory;
+
+    public $fillable = ['id', 'school_id'];
+
+    public $incrementing = false;
 }

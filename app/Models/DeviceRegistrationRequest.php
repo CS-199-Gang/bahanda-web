@@ -30,4 +30,8 @@ class DeviceRegistrationRequest extends Model
 
     public $fillable = ['device_id', 'code', 'expiry'];
     use HasFactory;
+
+    public $casts = [
+        'expiry' => 'datetime'
+    ];
 }

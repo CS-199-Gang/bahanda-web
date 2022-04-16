@@ -8,6 +8,7 @@ use App\Models\DeviceRegistrationRequest;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class DeviceController extends Controller
@@ -19,7 +20,9 @@ class DeviceController extends Controller
      */
     public function index()
     {
-        //
+        return [
+            'data' => Device::whereSchoolId(Auth::user()->school_id)->get()
+        ];
     }
 
     /**
@@ -82,5 +85,21 @@ class DeviceController extends Controller
         return [
             'data' => $code
         ];
+    }
+
+    public function claim($code)
+    {
+        $req = DeviceRegistrationRequest::whereCode($code)->first();
+        $now = new DateTime();
+
+        if ($now > $req->expiry) return response()->json([], 400);
+
+        $device = new Device([
+            'id' => $req->device_id,
+            'school_id' => Auth::user()->school_id
+        ]);
+        $device->save();
+        DeviceRegistrationRequest::whereDeviceId($req->device_id)->delete();
+        return response()->json([], 201);
     }
 }
