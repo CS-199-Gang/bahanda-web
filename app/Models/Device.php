@@ -29,4 +29,11 @@ class Device extends Model
     public $fillable = ['id', 'school_id'];
 
     public $incrementing = false;
+
+    public $with = ['school'];
+
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
 }

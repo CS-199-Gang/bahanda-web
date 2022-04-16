@@ -12,7 +12,7 @@
             <Column field="id" header="ID"> </Column>
         </DataTable>
         <Dialog v-model:visible="dialogVisible" modal>
-            <template #header> Add School </template>
+            <template #header> Add Device </template>
             <form id="add-device-form" @submit.prevent="addDevice">
                 <fieldset :disabled="submitting">
                     <span class="p-float-label mt-4">
