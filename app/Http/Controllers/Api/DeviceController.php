@@ -82,9 +82,7 @@ class DeviceController extends Controller
         $expiry->add(new DateInterval("PT5M"));
         $req->expiry = $expiry;
         $req->save();
-        return [
-            'data' => $code
-        ];
+        return $code;
     }
 
     public function claim($code)
