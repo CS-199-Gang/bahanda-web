@@ -21,7 +21,7 @@
                         <label for="code">Code</label>
                     </span>
                 </fieldset>
-                <p>{{ formResponse }}</p>
+                <p class="mt-4">{{ formResponse }}</p>
             </form>
             <template #footer>
                 <Button type="submit" form="add-device-form">Save</Button>
@@ -65,7 +65,7 @@ export default defineComponent({
             name: "",
         });
 
-        const formResponse = ref("response");
+        const formResponse = ref("");
         const addDevice = async () => {
             try {
                 const response = await axios.post(
