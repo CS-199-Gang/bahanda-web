@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Device;
 use App\Models\Score;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -87,5 +88,17 @@ class ScoreController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function upload(Request $request)
+    {
+        $device = Device::whereId($request->input('device_id'))->first();
+        $score = new Score([
+            'name' => $request->post('name'),
+            'student_number' => $request->post('student_number'),
+            'school' => $device->school_id,
+            'tasks' => $request->input('tasks')
+        ]);
+        $score->save();
     }
 }

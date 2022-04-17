@@ -25,6 +25,7 @@ Route::middleware('auth')->resource('school', SchoolController::class, ['as' => 
 Route::middleware('auth')->get('school/{school}/users', [SchoolController::class, 'users'])->name('school.users');
 Route::middleware('auth')->post('school/{school}/add-user', [SchoolController::class, 'add_user'])->name('school.users');
 Route::middleware('auth')->resource('score', ScoreController::class, ['as' => 'api']);
+Route::post('score/upload', [ScoreController::class, 'upload'])->name('score.upload');
 
 Route::resource('device', DeviceController::class, ['as' => 'api']);
 Route::post('device/register/{id}', [DeviceController::class, 'register'], ['as' => 'api']);
