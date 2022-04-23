@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\DeviceSettingsController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\ScoreController;
 use Illuminate\Foundation\Application;
@@ -42,3 +43,4 @@ Route::middleware('auth')->resource('/schools', SchoolController::class);
 Route::middleware('auth')->get('/users', [SchoolController::class, 'show'])->name('schools.users');
 Route::middleware('auth')->resource('/scores', ScoreController::class);
 Route::middleware('auth')->resource('/devices', DeviceController::class);
+Route::middleware('auth')->resource('/device-settings', DeviceSettingsController::class);

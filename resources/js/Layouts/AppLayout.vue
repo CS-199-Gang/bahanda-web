@@ -74,6 +74,12 @@
                         >
                             Devices
                         </jet-nav-link>
+                        <jet-nav-link
+                            :href="route('device-settings.index')"
+                            :active="route().current('device-settings.index')"
+                        >
+                            Device Settings
+                        </jet-nav-link>
                     </ul>
                     <ul
                         v-else-if="$page.props.user.user_type === 3"
@@ -96,6 +102,12 @@
                             :active="route().current('devices.index')"
                         >
                             Devices
+                        </jet-nav-link>
+                        <jet-nav-link
+                            :href="route('device-settings.index')"
+                            :active="route().current('device-settings.index')"
+                        >
+                            Device Settings
                         </jet-nav-link>
                     </ul>
 
