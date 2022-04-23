@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DeviceController;
+use App\Http\Controllers\Api\DeviceSettingController;
 use App\Http\Controllers\Api\SchoolController;
 use App\Http\Controllers\Api\ScoreController;
 use Illuminate\Http\Request;
@@ -30,3 +31,4 @@ Route::post('score/upload', [ScoreController::class, 'upload'])->name('score.upl
 Route::resource('device', DeviceController::class, ['as' => 'api']);
 Route::post('device/register/{id}', [DeviceController::class, 'register'], ['as' => 'api']);
 Route::middleware('auth')->post('device/claim/{code}', [DeviceController::class, 'claim'], ['as' => 'api']);
+Route::middleware('auth')->post('settings/apply', [DeviceSettingController::class, 'apply']);

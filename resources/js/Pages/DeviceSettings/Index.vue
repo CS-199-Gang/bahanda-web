@@ -88,6 +88,9 @@ export default defineComponent({
             devices.value = response.data.data;
         };
         const selectedDevices = ref([]);
+        const selectedDeviceIds = computed(() => {
+            return selectedDevices.value.map((device) => device.id);
+        });
 
         onMounted(getDevices);
 
@@ -95,6 +98,7 @@ export default defineComponent({
             devices,
             getDevices,
             selectedDevices,
+            selectedDeviceIds,
         });
 
         // Settings
@@ -114,8 +118,9 @@ export default defineComponent({
 
         const applySettings = async () => {
             const response = await axios.post("/settings/apply", {
-                scenarioOneTime: scenarioOneTime.value,
-                scenarioTwoTime: scenarioTwoTime.value,
+                scenario_one_time: scenarioOneTime.value,
+                scenario_two_time: scenarioTwoTime.value,
+                selected_devices: selectedDeviceIds.value,
             });
         };
 
