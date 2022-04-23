@@ -58,13 +58,21 @@
                             placeholder="Select Devices"
                         />
                         <div>
-                            <Button @click="applySettings"> Apply </Button>
+                            <Button
+                                @click="applySettings"
+                                :disabled="selectedDevices.length === 0"
+                            >
+                                Apply
+                            </Button>
                         </div>
                     </template>
                 </Card>
             </div>
         </div>
     </app-layout>
+    <Dialog v-model:visible="showDialog" dismissable-mask modal>
+        {{ dialogText }}
+    </Dialog>
 </template>
 
 <script>
@@ -75,6 +83,7 @@ import MultiSelect from "primevue/multiselect";
 import InputText from "primevue/inputtext";
 import InputNumber from "primevue/inputnumber";
 import Button from "primevue/button";
+import Dialog from "primevue/dialog";
 
 export default defineComponent({
     setup() {
@@ -116,12 +125,21 @@ export default defineComponent({
             return scenarioTwoMinutes.value * 60 + scenarioTwoSeconds.value;
         });
 
+        // Dialog
+
+        const showDialog = ref(false);
+        const dialogText = ref("");
+
         const applySettings = async () => {
             const response = await axios.post("/settings/apply", {
                 scenario_one_time: scenarioOneTime.value,
                 scenario_two_time: scenarioTwoTime.value,
                 selected_devices: selectedDeviceIds.value,
             });
+            const setDevices = response.data.data;
+            showDialog.value = true;
+            dialogText.value =
+                "Device settings applied to: " + setDevices.join(", ");
         };
 
         Object.assign(exports, {
@@ -130,6 +148,8 @@ export default defineComponent({
             scenarioTwoMinutes,
             scenarioTwoSeconds,
             applySettings,
+            showDialog,
+            dialogText,
         });
 
         return exports;
@@ -141,6 +161,7 @@ export default defineComponent({
         InputText,
         InputNumber,
         Button,
+        Dialog,
     },
 });
 </script>
