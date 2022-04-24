@@ -101,15 +101,24 @@ class DeviceSettingController extends Controller
             $device = Device::whereId($device_id)->first();
             if (Auth::user()->school_id !== $device->school_id) continue;
 
-            $setting = new DeviceSettings([
+            $setting = DeviceSettings::updateOrCreate([
                 'device_id' => $device->id,
+            ], [
                 'scenario_one_time' => $scenario_one_time,
                 'scenario_two_time' => $scenario_two_time,
             ]);
+
             $setting->save();
             $set_devices[] = $device->id;
         }
 
         return response()->json(['data' => $set_devices]);
+    }
+
+    public function device(Request $request, Device $device)
+    {
+        $device_settings = DeviceSettings::query()->where('device_id', '=', $device->id)->first();
+        if (!$device_settings) return ['data' => []];
+        return ['data' => $device_settings];
     }
 }
