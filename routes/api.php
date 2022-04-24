@@ -32,3 +32,4 @@ Route::resource('device', DeviceController::class, ['as' => 'api']);
 Route::post('device/register/{id}', [DeviceController::class, 'register'], ['as' => 'api']);
 Route::middleware('auth')->post('device/claim/{code}', [DeviceController::class, 'claim'], ['as' => 'api']);
 Route::middleware('auth')->post('settings/apply', [DeviceSettingController::class, 'apply']);
+Route::get('settings/{device}', [DeviceSettingController::class, 'device'])->name('settings.device');
