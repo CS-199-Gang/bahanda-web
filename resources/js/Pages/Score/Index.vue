@@ -12,13 +12,21 @@
                     }})
                 </template>
             </Column>
+            <Column field="tasks.battery" header="Batteries (2)"> </Column>
+            <Column field="tasks.docs" header="Documents (1)"> </Column>
             <Column field="tasks.water" header="Water (5)"> </Column>
-            <Column field="tasks.food" header="Food (5)"> </Column>
+            <Column field="tasks.food" header="Food (9)"> </Column>
             <Column field="tasks.matchsticks" header="Matchsticks (1)">
             </Column>
             <Column field="tasks.flashlight" header="Flashlight (1)"> </Column>
+            <Column field="tasks.medicne" header="Medicine (1)"></Column>
             <Column field="tasks.first_aid_kit" header="First Aid Kit (1)">
             </Column>
+
+            <Column field="tasks.door" header="Doors (3)"></Column>
+            <Column field="tasks.plug" header="Plugs (3)"></Column>
+            <Column field="tasks.power" header="Power (1)"></Column>
+            <Column field="tasks.window" header="Windows (3)"></Column>
         </DataTable>
     </app-layout>
 </template>
